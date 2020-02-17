@@ -16,7 +16,8 @@ def hash(pword):
 
 if __name__ == "__main__":
 	a = 0
-	codes = ["'\s+OR\s+1#", "'\s+oR\s+1#", "'\s+or\s+1#", "'\s+Or\s+1#", "'OR\s+1#", "'or\s+1#", "'Or\s+1#", "'oR\s+1#", "'\s+\|\|\s+1#", "'\|\|\s+1#", "'\|\|'\s+1"]
+	#["' OR 1#", "' oR 1#", "' or 1#", "' Or 1#", "'OR 1#", "'or 1#", "'Or 1#", "'oR 1#", "' || 1#", "'|| 1#", "'||' 1",
+	codes =  ["'='"]
 	patterns = []
 	for i in codes:
 		i = bytes(i, 'latin-1')
@@ -30,7 +31,6 @@ if __name__ == "__main__":
 	while match == None:
 		pword = newpassword()
 		hashed = hash(pword)
-		print(hashed)
 		for i in patterns:
 			match = re.search(i, hashed)
 			if match != None:
